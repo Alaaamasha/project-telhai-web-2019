@@ -8,11 +8,11 @@
       <form class="example-form">
         <mat-card-content>
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Username">
+            <input maxlength="16" minlength="2" matInput placeholder="Username">
           </mat-form-field>
   
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Password">
+            <input type="password" maxlength="16" minlength="6" matInput placeholder="Password">
           </mat-form-field>
         </mat-card-content>
         <button mat-stroked-button color="accent" class="btn-block">Log in</button>
