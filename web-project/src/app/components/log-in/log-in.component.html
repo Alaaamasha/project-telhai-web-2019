@@ -1,22 +1,28 @@
+<mat-toolbar  color="primary" class="app-header">
+    <span><p>Not Registred Yet! Join Us For Free </p></span>  
+    <span class="nav-tool-items">
+      <button mat-button mat-stroked-button mat-raised-button (click)="openRegister()" >Register</button>
+    </span>
+</mat-toolbar>
 <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Log in</mat-card-title>
+    </mat-card-header>
 
-    <mat-card class="box">
-      <mat-card-header>
-        <mat-card-title>Log in</mat-card-title>
-      </mat-card-header>
-  
-      <form class="example-form">
-        <mat-card-content>
-          <mat-form-field class="example-full-width">
-            <input maxlength="16" minlength="2" matInput placeholder="Username">
-          </mat-form-field>
-  
-          <mat-form-field class="example-full-width">
-            <input type="password" maxlength="16" minlength="6" matInput placeholder="Password">
-          </mat-form-field>
-        </mat-card-content>
-        <button mat-stroked-button color="accent" class="btn-block">Log in</button>
-      </form>
-    </mat-card>
-  
-  </div>
+    <form #loginFrm="ngForm" class="example-form" (ngSubmit)="loginFrm.valid && onSubmit(loginFrm)">
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <input type="email" name="email" email required matInput placeholder="Email" ngModel required>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input type="password" name="pass" maxlength="16" minlength="6" matInput placeholder="Password" ngModel
+            required>
+        </mat-form-field>
+      </mat-card-content>
+      <button mat-stroked-button color="accent" class="btn-block">Log in</button>
+    </form>
+  </mat-card>
+
+</div>

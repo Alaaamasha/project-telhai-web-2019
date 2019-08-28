@@ -1,34 +1,36 @@
+<mat-toolbar  color="primary" class="app-header">
+    <span class="nav-tool-items">
+      <button mat-button mat-stroked-button mat-raised-button (click)="openLogin()" >Login</button>
+    </span>
+</mat-toolbar>
+
 <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
   <mat-card class="box">
     <mat-card-header>
       <mat-card-title>Register</mat-card-title>
     </mat-card-header>
 
-    <form class="example-form">
+    <form #registerFrm="ngForm" class="example-form" (ngSubmit)="registerFrm.valid && onSubmit(registerFrm)">
 
       <mat-card-content>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Username">
+            <input type="text" name="username" required matInput placeholder="UserName" ngModel required>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Email">
+            <input type="email" name="email" email required matInput placeholder="Email" ngModel required>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Password">
+            <input type="password" name="pass" maxlength="16" minlength="6" matInput placeholder="Password" ngModel
+            required>
         </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <mat-label>Choose a role...</mat-label>
-          <mat-select [(value)]="selected">
-            <mat-option [value]="roles" *ngFor="let roles of Roles">{{roles}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
+        
+        <ngx-mat-file-input class="example-full-width">
+            <input type="file" name="pass2" ngModel>
+        </ngx-mat-file-input>
       </mat-card-content>
-
+      <hr>
       <button mat-stroked-button color="accent" class="btn-block">Register</button>
 
     </form>

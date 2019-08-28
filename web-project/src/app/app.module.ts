@@ -20,6 +20,13 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { LogInComponent } from './components/log-in/log-in.component';
 import { RegisterComponent } from './components/register/register.component';
 
+  /* FireBase*/
+  import { AngularFireModule } from '@angular/fire'
+  import { AngularFireDatabaseModule } from '@angular/fire/database';
+  import { AngularFireAuthModule } from '@angular/fire/auth';
+ 
+  import { environment } from './../environments/environment';
+import { HomeComponent } from './components/home/home.component' 
 
 @NgModule({
   declarations: [
@@ -27,7 +34,8 @@ import { RegisterComponent } from './components/register/register.component';
     LogInComponent,
     RegisterComponent,
     RegisterComponent,
-    LogInComponent
+    LogInComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +44,10 @@ import { RegisterComponent } from './components/register/register.component';
     AngularMaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [],
   bootstrap: [AppComponent],
