@@ -1,0 +1,21 @@
+<mat-toolbar  color="primary" class="app-header">
+    <button mat-button (click)="openHomeComponent()">
+        <mat-icon>home</mat-icon> <span > Home</span>
+    </button>
+    <button mat-button (click)="openFriendsComponent()" >
+        <mat-icon>people</mat-icon> <span> Friends</span>   
+    </button>
+    <button class="selected-btn" mat-button >
+        <mat-icon>person</mat-icon><span> Profile</span>
+    </button>
+</mat-toolbar>
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title>My Profile</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+          <img [src]="currUser.imageUrl" alt="asd" height="300px" width="200px">
+      </mat-card-content>
+    </mat-card>
+</div>

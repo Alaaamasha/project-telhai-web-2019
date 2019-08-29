@@ -20,13 +20,16 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { LogInComponent } from './components/log-in/log-in.component';
 import { RegisterComponent } from './components/register/register.component';
 
-  /* FireBase*/
-  import { AngularFireModule } from '@angular/fire'
-  import { AngularFireDatabaseModule } from '@angular/fire/database';
-  import { AngularFireAuthModule } from '@angular/fire/auth';
+/* FireBase*/
+import { AngularFireModule } from '@angular/fire'
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireStorageModule } from '@angular/fire/storage';
  
-  import { environment } from './../environments/environment';
-import { HomeComponent } from './components/home/home.component' 
+import { environment } from './../environments/environment';
+import { HomeComponent } from './components/home/home.component';
+import { ProfileComponent } from './components/profile/profile.component' 
+import { FriendsComponent } from './components/friends/friends.component' 
 
 @NgModule({
   declarations: [
@@ -35,7 +38,9 @@ import { HomeComponent } from './components/home/home.component'
     RegisterComponent,
     RegisterComponent,
     LogInComponent,
-    HomeComponent
+    HomeComponent,
+    ProfileComponent,
+    FriendsComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +52,7 @@ import { HomeComponent } from './components/home/home.component'
     FlexLayoutModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [],

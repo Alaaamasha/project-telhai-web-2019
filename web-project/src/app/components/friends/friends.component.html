@@ -1,17 +1,12 @@
 <mat-toolbar  color="primary" class="app-header">
-    <button mat-button class="selected-btn">
+    <button mat-button (click)="openHomeComponent()">
         <mat-icon>home</mat-icon> <span > Home</span>
     </button>
-    <button mat-button (click)="openFriendsComponent()" >
+    <button mat-button class="selected-btn" >
         <mat-icon>people</mat-icon> <span> Friends</span>   
     </button>
     <button mat-button (click)="openProfileComponent()" >
         <mat-icon>person</mat-icon><span> Profile</span>
     </button>
 </mat-toolbar>
-<div class="login-wrapper">
-    
-</div>
-<footer>
-<h1> halo oa,</h1>
-</footer>
+<p>friends works!</p>
