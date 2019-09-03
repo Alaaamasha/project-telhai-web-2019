@@ -27,7 +27,8 @@ export class LogInComponent implements OnInit {
       await this._authService.login(frm.value.email,frm.value.pass) 
       this._router.navigate(['home'])
     } catch (err) {
-      console.error(err); 
+      console.error(err);
+      alert(err.message); 
     }
   }
 

@@ -37,7 +37,8 @@ export class RegisterComponent implements OnInit {
       await this._authService.register(val,this.fileData) 
       this._router.navigate(['home'])
     } catch (err) {
-      console.error(err); 
+      console.error(err);
+      alert(err.message); 
     }
   }
 

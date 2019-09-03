@@ -10,7 +10,12 @@
     </button>
 </mat-toolbar>
 <div class="login-wrapper">
-    
+    <mat-card>
+        <button mat-button (click)="openProfileComponent()" >
+            <mat-icon>post_add</mat-icon><span> Write New Post!</span>
+        </button>
+        
+    </mat-card>
 </div>
 <footer class="footer-lbl">
     <button mat-button (click)="makeJoke()">
