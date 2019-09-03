@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AppComponent } from 'src/app/app.component';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -9,10 +9,14 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor( private _router: Router) { }
+  joke:any;
+  apiUrl:string;
+
+  constructor( private _router: Router,
+               private _http:HttpClient) { }
 
   ngOnInit() {
-    
+    this.apiUrl = 'http://api.icndb.com/jokes/random';
   }
 
   openFriendsComponent(){
@@ -21,6 +25,20 @@ export class HomeComponent implements OnInit {
   
   openProfileComponent(){
     this._router.navigate(['profile'])
+  }
+
+  async makeJoke(){
+    try {
+    await this._http.
+    get(this.apiUrl)
+    .toPromise()
+    .then(result=>{
+      this.joke = result;
+      alert(this.joke.value.joke)
+    })
+    } catch (error) {
+      console.error(error);
+    } 
   }
 
 }

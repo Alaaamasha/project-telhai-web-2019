@@ -30,6 +30,7 @@ import { environment } from './../environments/environment';
 import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component' 
 import { FriendsComponent } from './components/friends/friends.component' 
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { FriendsComponent } from './components/friends/friends.component'
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     AngularMaterialModule,
     ReactiveFormsModule,
     FormsModule,

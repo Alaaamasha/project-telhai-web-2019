@@ -3,10 +3,10 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  background-image: url(./assets/images/background.png);
 }
 
 body {
-  background-image: url(./assets/images/background.png);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -26,6 +26,10 @@ body {
 
 .login-wrapper {
   height: 100%;
+}
+
+.footer-lbl{
+  text-align: center;
 }
 
 .selected-btn{
