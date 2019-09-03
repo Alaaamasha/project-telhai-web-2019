@@ -17,5 +17,8 @@
       <mat-card-content>
           <img [src]="currUser.imageUrl" alt="asd" height="300px" width="200px">
       </mat-card-content>
+      <button class="logout-btn" mat-button (click)="logout()" >
+        <mat-icon>exit_to_app</mat-icon><span> Logout</span>
+      </button>
     </mat-card>
 </div>

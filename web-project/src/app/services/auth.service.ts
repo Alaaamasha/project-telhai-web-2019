@@ -44,28 +44,21 @@ export class AuthService {
     return false;
   }
 
-  async getCurrentUser(){
+  async getCurrentUserId(){
     const user = await this._afAuth.auth.currentUser;
-    let currUser;
     if(user){
       return user.uid
-      // let ref = this._afDB.database.ref('users');
-      // ref.child(user.uid).once('value',(data)=>{
-      //   this.currUser = {
-      //     email:data.val().email,
-      //     username:data.val().username,
-      //     imageUrl:data.val().imageUrl,
-      //     friendsList: data.val().friendsList ?data.val().friendsList:[] ,
-      //     friendsRequestList : data.val().friendsRequestList ? data.val().friendsRequestList:[],
-      //     posts:data.val().posts ? data.val().posts:[] 
-      //   }
-      // })
     }
     return null;
   }
 
-  saveUserDetails(){
-
+  async logout(){
+    try {
+      await this._afAuth.auth.signOut();
+    } catch (error) {
+      console.error(error);
+      
+    }
   }
 
 }

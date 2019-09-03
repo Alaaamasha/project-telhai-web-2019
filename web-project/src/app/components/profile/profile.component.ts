@@ -12,7 +12,8 @@ import { AngularFireDatabase } from '@angular/fire/database';
 export class ProfileComponent implements OnInit {
 
   currUser:any
-  userId:string;
+  userId:string="";
+  prevUserId:string="";
 
   constructor(
     private _router:Router,
@@ -21,13 +22,13 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    // this.currUser = this._authSvc.getCurrentUser()
-    this.userId = await this._authSvc.getCurrentUser();
-    let user;
-    let ref = await this._afDB.database.ref('users');
-    await ref.child(this.userId).once('value').then((snapshot)=>{
-      const currUser = snapshot.val();
-      this.currUser = {
+    this.userId = await this._authSvc.getCurrentUserId();
+    if(this.userId!=this.prevUserId){ // this trick is to do only one call to get the current user
+      this.prevUserId = this.userId; 
+      let ref = await this._afDB.database.ref('users');
+      await ref.child(this.userId).once('value').then((snapshot)=>{
+        const currUser = snapshot.val();
+        this.currUser = {
           email:currUser.email,
           username:currUser.username,
           imageUrl:currUser.imageUrl,
@@ -35,13 +36,10 @@ export class ProfileComponent implements OnInit {
           friendsRequestList : currUser.friendsRequestList ? currUser.friendsRequestList:[],
           posts:currUser.posts ? currUser.posts:[] 
         }
-        debugger;
-    });
-    console.log(this.currUser);
+      });
+    }
+      console.log(this.currUser);
   }
-    // this.currUser = this._authSvc._currUser;
-    // console.log(typeof(this.currUser));
-  
 
   openFriendsComponent(){
     this._router.navigate(['friends'])
@@ -49,5 +47,14 @@ export class ProfileComponent implements OnInit {
 
   openHomeComponent(){
     this._router.navigate(['home'])
+  }
+
+  async logout(){
+    try {
+      await this._authSvc.logout();
+      this._router.navigate(['login'])
+    } catch (error) {
+      console.error(error);
+    }
   }
 }

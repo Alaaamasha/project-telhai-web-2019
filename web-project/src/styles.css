@@ -37,6 +37,10 @@ body {
   color: #ffffff;
 }
 
+.logout-btn{
+  background: red;
+}
+
 .box {
   position: relative;
   top: 0;
