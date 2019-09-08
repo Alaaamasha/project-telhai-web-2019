@@ -1,0 +1,25 @@
+.profile-card{
+    display: flex;
+    flex-direction: column;
+    >h3{
+        margin: 5px !important;
+    }
+    >div{
+        display: flex;
+        flex-direction: row;
+        justify-content:space-around;
+        >h3{
+            margin: 0px !important;
+            margin-bottom: 5px;
+        }
+        >p{
+            margin: 0px !important;
+        }
+    }
+}
+
+
+.profile-img{
+    border-radius: 150px;
+    margin: 10px;
+}

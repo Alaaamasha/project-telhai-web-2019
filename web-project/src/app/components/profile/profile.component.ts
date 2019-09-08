@@ -7,7 +7,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
 
@@ -38,7 +38,6 @@ export class ProfileComponent implements OnInit {
         }
       });
     }
-      console.log(this.currUser);
   }
 
   openFriendsComponent(){
