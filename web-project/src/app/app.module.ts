@@ -31,6 +31,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component' 
 import { FriendsComponent } from './components/friends/friends.component' 
 import { HttpClientModule } from '@angular/common/http';
+import { PostComponent } from './components/post/post.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { HttpClientModule } from '@angular/common/http';
     LogInComponent,
     HomeComponent,
     ProfileComponent,
-    FriendsComponent
+    FriendsComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +58,9 @@ import { HttpClientModule } from '@angular/common/http';
     AngularFireAuthModule,
     AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebase)
+  ],
+  entryComponents:[
+    PostComponent
   ],
   providers: [],
   bootstrap: [AppComponent],

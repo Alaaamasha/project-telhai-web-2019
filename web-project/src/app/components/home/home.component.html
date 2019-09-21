@@ -17,10 +17,13 @@
         
     </mat-card>
 </div> -->
-<div class="login-wrapper" fxLayout="column" fxLayoutAlign="center center">
-    <button>
-        <mat-icon>post_add</mat-icon>
-    </button>
+<div class="login-wrapper" fxLayout="column" fxLayoutAlign="space-around center">
+    <span>
+        <button mat-raised-button (click)="writePost()">
+            <mat-icon>post_add</mat-icon>
+        Write New Post 
+        </button>
+    </span>
     
     <div class="box">
         <mat-list>
