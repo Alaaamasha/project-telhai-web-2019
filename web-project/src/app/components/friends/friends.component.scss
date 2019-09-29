@@ -1,0 +1,11 @@
+.list-item{
+    border:2px dotted aqua;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: auto;
+    >img{
+        border: 50px;
+        margin: 10px
+    }
+}

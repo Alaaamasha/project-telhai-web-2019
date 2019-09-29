@@ -2,6 +2,9 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AuthService } from 'src/app/services/auth.service';
+import { v4 as uuid } from 'uuid';
+// import { getRandomString } from 'selenium-webdriver/safari';
+
 
 @Component({
   selector: 'app-post',
@@ -15,15 +18,20 @@ export class PostComponent implements OnInit {
     public dialogRef: MatDialogRef<PostComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _afDB:AngularFireDatabase,
-    private _authSvc:AuthService) {}
+    private _authSvc:AuthService
+    ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.userId = await this._authSvc.getCurrentUserId();
   }
 
   async rax(){
-    this.userId = await this._authSvc.getCurrentUserId();
-    let ref = await this._afDB.database.ref('users').child(this.userId)
-    .child("posts").child("1").set("asd is goooooooooooood");
+    let random = Math.floor(Math.random())%50;
+    let ref = await this._afDB.database.ref('users')
+    .child(this.userId)
+    .child("posts")
+    .child(uuid())
+    .set("asd is ::"+random);
     this.dialogRef.close();
   }
 }

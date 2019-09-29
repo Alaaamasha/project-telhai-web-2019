@@ -6,4 +6,10 @@ export interface IUser {
     friendsList?:[];
     friendsRequestList?:[];
     posts?:[]
-}   
+}
+ 
+export interface IFriendRequest {
+    username: string;
+    id:string;
+    imageUrl:string;
+}
