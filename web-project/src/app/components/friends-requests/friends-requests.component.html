@@ -1,0 +1,6 @@
+<div class="container">
+    <div class="jumbotron" *ngFor="let item of friendsRequestsList">
+        <img [src]="item.imageUrl" height="200px" width="200px">
+        <h1>{{item.username}}</h1>
+    </div>
+</div>

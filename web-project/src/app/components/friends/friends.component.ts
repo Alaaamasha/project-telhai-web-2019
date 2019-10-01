@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { IUser, IFriendRequest } from 'src/app/interfaces';
 import { AuthService } from 'src/app/services/auth.service';
+import { FriendsRequestsComponent } from '../friends-requests/friends-requests.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-friends',
@@ -15,11 +17,13 @@ export class FriendsComponent implements OnInit {
 
   userId: string;
   allFriendsList: IFriendRequest[] = [];
+  currUersRequest:IFriendRequest = null;
 
   constructor(
     private _authSvc: AuthService,
     private _router: Router,
-    private _db: AngularFireDatabase
+    private _db: AngularFireDatabase,
+    private _matDialog:MatDialog
   ) { }
 
   async ngOnInit() {
@@ -37,9 +41,15 @@ export class FriendsComponent implements OnInit {
                 username: value.username
               })
             }
+            else{
+              this.currUersRequest = {
+                id : this.userId,
+                imageUrl : value.imageUrl,
+                username : value.username
+              } 
+            }
           }
         })
-        console.log('this.allFriendsList: ', this.allFriendsList);
       }
       else{
         await this._authSvc.logout();
@@ -50,12 +60,21 @@ export class FriendsComponent implements OnInit {
     }
   }
 
+  openFriendsRequests(){
+    let dialog = this._matDialog.open(FriendsRequestsComponent,{
+      width:'700px',height:'400px'
+    })
+    dialog.afterClosed().subscribe(res=>{
+      
+    })
+  }
+
   async sendFreiendRequest(request: IFriendRequest){
     let ref = await this._db.database.ref('users')
     .child(request.id )
     .child("friendsRequestList")
     .child(this.userId)
-    .set(request)
+    .set(this.currUersRequest)
   }
 
   openProfileComponent() {

@@ -32,6 +32,7 @@ import { ProfileComponent } from './components/profile/profile.component'
 import { FriendsComponent } from './components/friends/friends.component' 
 import { HttpClientModule } from '@angular/common/http';
 import { PostComponent } from './components/post/post.component';
+import { FriendsRequestsComponent } from './components/friends-requests/friends-requests.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { PostComponent } from './components/post/post.component';
     HomeComponent,
     ProfileComponent,
     FriendsComponent,
+    FriendsRequestsComponent,
     PostComponent
   ],
   imports: [
