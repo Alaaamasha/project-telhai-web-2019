@@ -1,11 +1,19 @@
 .list-item{
+    margin: 5px !important;
     border:2px dotted aqua;
-    display: flex;
+    display: flex !important;
     flex-direction: row;
-    justify-content: space-around;
-    height: auto;
-    >img{
-        border: 50px;
-        margin: 10px
+    justify-content: space-between;
+    height: 150px !important;
+    :first-child{
+        margin-right: 20px;
     }
+    :last-child{
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.img-item{
+    border-radius: 80px !important;
 }

@@ -8,6 +8,11 @@ export interface IUser {
     posts?:[]
 }
  
+export interface IPost {
+    text : string;
+    username: string;
+    imageUrl:string;    
+}
 export interface IFriendRequest {
     username: string;
     id:string;

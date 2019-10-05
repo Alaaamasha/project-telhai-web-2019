@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { IUser, IFriendRequest } from 'src/app/interfaces';
 import { AuthService } from 'src/app/services/auth.service';
 import { FriendsRequestsComponent } from '../friends-requests/friends-requests.component';
 import { MatDialog } from '@angular/material';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-friends',
@@ -18,18 +19,37 @@ export class FriendsComponent implements OnInit {
   userId: string;
   allFriendsList: IFriendRequest[] = [];
   currUersRequest:IFriendRequest = null;
+  _currUser: IUser = null;
+
 
   constructor(
     private _authSvc: AuthService,
     private _router: Router,
     private _db: AngularFireDatabase,
-    private _matDialog:MatDialog
+    private _matDialog:MatDialog,
+    private _route: ActivatedRoute
+
   ) { }
 
   async ngOnInit() {
+    // this.allFriendsList.push({
+    //   id:"asdasdasdasd",
+    //   imageUrl:"asdasdasdasdasd",
+    //   username:"ASd amasha"
+    // })
+    // this.allFriendsList.push({
+    //   id:"asdasdasdasd",
+    //   imageUrl:"src/assets/images/background.png",
+    //   username:"Kdsj  Dmasha"
+    // })
+    // this.allFriendsList.push({
+    //   id:"asdasdasdasd",
+    //   imageUrl:"asdasdasdasdasd",
+    //   username:"QWed KJsha"
+    // })
     try {
-      this.userId = await this._authSvc.getCurrentUserId();
-      if (this.userId) {
+      this._currUser = this._authSvc.get();
+      if (this._currUser.id) {
         await this._db.database.ref("users").once('value', (snapshot) => {
           let users = snapshot.val();
           for (let key in users) {
@@ -43,7 +63,7 @@ export class FriendsComponent implements OnInit {
             }
             else{
               this.currUersRequest = {
-                id : this.userId,
+                id : this._currUser.id,
                 imageUrl : value.imageUrl,
                 username : value.username
               } 

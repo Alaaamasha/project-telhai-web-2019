@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { IUser } from 'src/app/interfaces';
 import { AngularFireDatabase } from '@angular/fire/database';
@@ -14,14 +14,20 @@ export class ProfileComponent implements OnInit {
   currUser:any
   userId:string="";
   prevUserId:string="";
+  _currUser : IUser = null;
 
   constructor(
     private _router:Router,
     private _authSvc:AuthService,
-    private _afDB:AngularFireDatabase
+    private _afDB:AngularFireDatabase,
+    private _route : ActivatedRoute
   ) { }
 
   async ngOnInit() {
+    // this._currUser = JSON.parse(this._route.snapshot.params['user']);
+    // console.log('user: ', this._currUser);
+
+
     this.userId = await this._authSvc.getCurrentUserId();
     if(this.userId!=this.prevUserId){ // this trick is to do only one call to get the current user
       this.prevUserId = this.userId; 

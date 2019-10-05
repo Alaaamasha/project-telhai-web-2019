@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { IUser } from '../interfaces';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { IUser } from '../interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  currUser:any;
+  currUser:IUser;
 
   constructor(private _afAuth : AngularFireAuth,
               private _afDB: AngularFireDatabase,
@@ -59,6 +59,14 @@ export class AuthService {
       console.error(error);
       
     }
+  }
+
+  get(){
+    return this.currUser;
+  }
+
+  set(usr : IUser){
+    this.currUser = usr ;
   }
 
 }

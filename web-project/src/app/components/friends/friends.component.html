@@ -13,13 +13,17 @@
 <div class="login-wrapper" fxLayout="column" fxLayoutAlign="space-around center">
     <div class="box">
         <mat-nav-list>
-            <mat-list-item *ngFor="let friendRequest of allFriendsList">
-               <div class="list-item">
-                   <h1>{{friendRequest.username}}</h1>
-                   <img [src]=friendRequest.imageUrl height="150px" width="150" >
-                   <button (click)="sendFreiendRequest(friendRequest)">Add</button>
-                </div>
-            </mat-list-item>
+            <mat-list-item class="list-item" *ngFor="let friendRequest of allFriendsList">
+                <div>
+                    <img [src]="friendRequest.imageUrl" class="img-item" height="130px" width="130px" >
+                </div>   
+                <div>
+                    <div>
+                        <h2>{{friendRequest.username}}</h2>
+                       <button (click)="sendFreiendRequest(friendRequest)">Add</button>
+                   </div>
+               </div>
+               </mat-list-item>
         </mat-nav-list>
 </div>
     <button mat-raised-button (click)="openFriendsRequests()">
