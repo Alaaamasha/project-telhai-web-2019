@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material';
 import { PostComponent } from '../post/post.component';
-import { IFriendRequest, IUser } from 'src/app/interfaces';
+import { IUser } from 'src/app/interfaces';
 import { AuthService } from 'src/app/services/auth.service';
 import { AngularFireDatabase } from '@angular/fire/database';
 

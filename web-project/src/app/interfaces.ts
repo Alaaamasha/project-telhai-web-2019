@@ -17,4 +17,5 @@ export interface IFriendRequest {
     username: string;
     id:string;
     imageUrl:string;
+    friendStatus?:string;
 }
