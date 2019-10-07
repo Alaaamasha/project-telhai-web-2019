@@ -45,13 +45,37 @@ export class AuthService {
   }
 
   async getCurrentUserId(){
-    const user = await this._afAuth.auth.currentUser;
-    if(user){
-      return user.uid
-    }
-    return null;
+     const user= await this._afAuth.auth.currentUser; 
+    return user.uid;
   }
 
+  async initCurrUserData(){
+    if(!this.currUser){
+
+      const user = await this._afAuth.auth.currentUser;
+      await this._afDB.database.ref("users").once('value', (snapshot) => {
+      let users = snapshot.val();
+      for (let key in users) {
+        if(key === user.uid){
+          const value = users[key];
+          let currUser = <IUser>{
+            email:value.email,
+            friendsList: value.friendsList ? value.friendsList:[],
+            friendsRequestList: value.friendsRequestList ? value.friendsRequestList:[],
+            id:key,
+            imageUrl:value.imageUrl,
+            posts:value.posts ? value.posts : [],
+            username : value.username
+          }
+          this.set(currUser);
+        }
+      
+      }}
+      )
+    }
+  }
+
+  
   async logout(){
     try {
       await this._afAuth.auth.signOut();

@@ -1,8 +1,14 @@
 <div>
-    <mat-form-field>
-        <textarea matInput placeholder="Textarea"></textarea>
-    </mat-form-field>
-    <button (click)="rax()">
-        asd
-    </button>
+    <label class="col-sm-7 col-md-4 col-lg-6" for="form23">Write Your Own Post:</label>
+    <div class="md-form mb-4 pink-textarea active-pink-textarea-2">
+        <textarea [(ngModel)]="text_post" placeholder="enter a text here" id="form23" class="md-textarea form-control" rows="3"></textarea>
+    </div>
+
+    <div class="col-sm-offset-5 col-sm-2 text-center">
+        <button type="button" class="btn btn-primary" (click)="Post()">
+            Post
+        </button>
+    </div>
 </div>
+
+   

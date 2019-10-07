@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, ChildActivationEnd } from '@angular/router';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { IUser, IFriendRequest } from 'src/app/interfaces';
 import { AuthService } from 'src/app/services/auth.service';
@@ -49,19 +49,22 @@ export class FriendsComponent implements OnInit {
             if (key != this._currUser.id) {
               let foundFriend = friendssList.some(item => item.id===key);
               let foundFriendRequest = requestsList.some(item => item.id===key);
-              
-              this.allFriendsList.push(<IFriendRequest>{
-                id: key,
-                imageUrl: value.imageUrl,
-                username: value.username,
-                friendStatus : (foundFriend==true)?"We Are Friends":(foundFriendRequest==true ? "Sended/Recived Frriend Request":"Add Friend") 
-              })
+              if((foundFriendRequest == false && value.status!='sent') || foundFriend == true ){
+                const status = foundFriend == true ? "We Are Friends":"Add Friend";
+                this.allFriendsList.push(<IFriendRequest>{
+                  id: key,
+                  imageUrl: value.imageUrl,
+                  username: value.username,
+                  friendStatus : status
+                })
+              }
             }
           }
         })
       }
       else{
         await this._authSvc.logout();
+        this._authSvc.set(null);
         this._router.navigate(['login'])
       }
     } catch (error) {
@@ -86,16 +89,27 @@ export class FriendsComponent implements OnInit {
         .child(request.id )
         .child("friendsRequestList")
         .child(this._currUser.id)
-        .set(this.currUersRequest)
+        .set(<IFriendRequest>{
+          id: this._currUser.id,
+          imageUrl: this._currUser.imageUrl,
+          username: this._currUser.username,
+        })
+
+        await this._db.database.ref('users')
+        .child(request.id )
+        .child('status')
+        .set('sent')
+
         let idx = this.allFriendsList.findIndex(item => item.id==request.id)
-        this.allFriendsList[idx].friendStatus = "Sended/Recived Frriend Request";
+        this.allFriendsList.splice(idx,1);
       } 
       catch (error) {
         console.error(error)
       }
     }
     else{
-      alert("You Cant Add This Friend")
+      alert("Already Friends");
+      return;
     }
   }
 

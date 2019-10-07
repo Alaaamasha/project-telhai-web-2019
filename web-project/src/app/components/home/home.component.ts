@@ -30,7 +30,8 @@ export class HomeComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      this._userId =  await this._authSvc.getCurrentUserId();
+      let user =  await this._authSvc.initCurrUserData();
+      
       await this._db.database.ref("users").once('value', (snapshot) => {
         let users = snapshot.val();
         for (let key in users) {
@@ -49,7 +50,6 @@ export class HomeComponent implements OnInit {
           }
         }
        })
-       this._authSvc.set(this._currentUser);
        this.allFriendsList.forEach(usr=>{
         if(usr.posts){
           for(let key in usr.posts){
@@ -92,7 +92,7 @@ export class HomeComponent implements OnInit {
 
   writePost(){
     let dialog = this._matDialog.open(PostComponent,{
-      width:'700px',height:'400px'
+      width:'700px',height:'300px'
     })
     dialog.afterClosed().subscribe(res=>{
       

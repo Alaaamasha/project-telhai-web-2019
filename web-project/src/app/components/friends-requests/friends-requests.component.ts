@@ -46,7 +46,9 @@ export class FriendsRequestsComponent implements OnInit {
     }
 
     async acceptRejectRequest(user,status){
+
       // create modal are u sure;
+      return;
       if(status){
         await this._db.database.ref('users')
         .child(this._currUser.id)
@@ -58,8 +60,11 @@ export class FriendsRequestsComponent implements OnInit {
         await this._db.database.ref('users')
         .child(user.id)
         .child("friendsList")
+        .child(this._currUser.id)
         .set({
           // set the curr user into new friend FRIENDSLIST
+          id:this._currUser.id,
+          username : this._currUser.username,
         }) 
 
       }

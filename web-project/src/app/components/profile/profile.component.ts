@@ -57,6 +57,7 @@ export class ProfileComponent implements OnInit {
   async logout(){
     try {
       await this._authSvc.logout();
+      this._authSvc.set(null);
       this._router.navigate(['login'])
     } catch (error) {
       console.error(error);
