@@ -46,6 +46,10 @@ body {
   background: red;
 }
 
+.img-item{
+  border-radius: 80px !important;
+}
+
 .box {
   position: relative;
   top: 0;

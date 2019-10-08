@@ -21,7 +21,6 @@ export class FriendsRequestsComponent implements OnInit {
 
   constructor(
         private _authSvc: AuthService,
-        private _router: Router,
         @Inject(MAT_DIALOG_DATA) public data: any,
         private _db: AngularFireDatabase
       ) { }
@@ -46,15 +45,19 @@ export class FriendsRequestsComponent implements OnInit {
     }
 
     async acceptRejectRequest(user,status){
-
-      // create modal are u sure;
-      return;
+      let conf = confirm("Are U Sure ?")
+      if(!conf){
+        return;
+      }
       if(status){
         await this._db.database.ref('users')
         .child(this._currUser.id)
         .child("friendsList")
+        .child(user.id)
         .set({
           // set the new friend to curr user FRIENDSLIST
+          id : user.id,
+          username : user.username 
         }) 
         
         await this._db.database.ref('users')
@@ -66,15 +69,18 @@ export class FriendsRequestsComponent implements OnInit {
           id:this._currUser.id,
           username : this._currUser.username,
         }) 
-
       }
       let idx = this.friendsRequestsList.findIndex(req => req.id==user.id);
       this.friendsRequestsList.splice(idx,1);
+    
+
       await this._db.database.ref('users')
       .child(this._currUser.id)
       .update({
         "friendsRequestList": this.friendsRequestsList
-      }) 
+      })
+      
+      
     }
 
 }

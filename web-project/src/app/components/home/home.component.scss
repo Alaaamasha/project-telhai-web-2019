@@ -1,4 +1,5 @@
-.list-item{
+
+.list-item-post{
     margin: 5px !important;
     border:2px dotted aqua;
     display: flex !important;
@@ -9,11 +10,7 @@
         margin-right: 20px;
     }
     :last-child{
-        align-items: center;
-        justify-content: center;
-        >button{
-            background-color: aqua;
-        }
+        display: flex;
+        flex-direction: column;
     }
 }
-

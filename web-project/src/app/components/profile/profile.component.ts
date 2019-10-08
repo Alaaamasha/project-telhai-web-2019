@@ -11,10 +11,9 @@ import { AngularFireDatabase } from '@angular/fire/database';
 })
 export class ProfileComponent implements OnInit {
 
-  currUser:any
-  userId:string="";
-  prevUserId:string="";
-  _currUser : IUser = null;
+  currUser: IUser;
+  friendsCount : number;
+  postsCount : number;
 
   constructor(
     private _router:Router,
@@ -24,26 +23,17 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    // this._currUser = JSON.parse(this._route.snapshot.params['user']);
-    // console.log('user: ', this._currUser);
-
-
-    this.userId = await this._authSvc.getCurrentUserId();
-    if(this.userId!=this.prevUserId){ // this trick is to do only one call to get the current user
-      this.prevUserId = this.userId; 
-      let ref = await this._afDB.database.ref('users');
-      await ref.child(this.userId).once('value').then((snapshot)=>{
-        const currUser = snapshot.val();
-        this.currUser = {
-          email:currUser.email,
-          username:currUser.username,
-          imageUrl:currUser.imageUrl,
-          friendsList: currUser.friendsList ?currUser.friendsList:[] ,
-          friendsRequestList : currUser.friendsRequestList ? currUser.friendsRequestList:[],
-          posts:currUser.posts ? currUser.posts:[] 
-        }
-      });
-    }
+    await this._authSvc.initCurrUserData();
+    this.currUser = this._authSvc.get()
+    
+    let postsList = this.currUser.posts ? 
+    Object.keys(this.currUser.posts).map(key => ({id: key, value: this.currUser.friendsRequestList[key]})):[];  
+        
+    let friendssList = this.currUser.friendsList ? 
+    Object.keys(this.currUser.friendsList).map(key => ({id: key, value: this.currUser.friendsList[key]})):[];
+    
+    this.friendsCount = friendssList.length 
+    this.postsCount =postsList.length
   }
 
   openFriendsComponent(){

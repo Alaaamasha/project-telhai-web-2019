@@ -3,9 +3,9 @@ export interface IUser {
     email: string;
     id?:string;
     imageUrl?:string;
-    friendsList?:[];
-    friendsRequestList?:[];
-    posts?:[]
+    friendsList?:any[];
+    friendsRequestList?:any[];
+    posts?:any[]
 }
  
 export interface IPost {

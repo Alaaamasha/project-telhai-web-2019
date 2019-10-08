@@ -22,12 +22,14 @@
         <h1>Click Here to Read Joke of the Day </h1>
     </button>
     <div class="box">
-        <mat-list class="row" *ngFor="let item of friendsPostsList">
-             <mat-list-item class="col-sm-7" style="background-color:red"> 
+        <mat-list class="row" >
+             <mat-list-item *ngFor="let item of friendsPostsList" class="list-item-post"> 
                 <div>
-                    <h4>{{item.username}} </h4>
-                    <h6>{{item.text}}</h6>
-                    <img [src]="item.imageUrl" width="100px" height="50px">
+                    <img [src]="item.imageUrl" class="img-item" width="100px" height="100px">
+                </div>
+                 <div>
+                    <h4 class="primary">{{item.username}}</h4>
+                    <p>{{item.text}}</p>
                 </div>
             </mat-list-item>
         </mat-list>
