@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ChildActivationEnd } from '@angular/router';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AngularFireDatabase } from '@angular/fire/database';
 import { IUser, IFriendRequest } from 'src/app/interfaces';
 import { AuthService } from 'src/app/services/auth.service';
 import { FriendsRequestsComponent } from '../friends-requests/friends-requests.component';

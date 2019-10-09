@@ -1,5 +1,4 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { Router } from '@angular/router';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { IUser, IFriendRequest } from 'src/app/interfaces';
 import { AuthService } from 'src/app/services/auth.service';

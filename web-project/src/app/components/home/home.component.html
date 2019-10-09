@@ -21,7 +21,7 @@
     <button mat-button (click)="makeJoke()">
         <h1>Click Here to Read Joke of the Day </h1>
     </button>
-    <div class="box">
+    <div *ngIf="friendsPostsList.length"  class="box">
         <mat-list class="row" >
              <mat-list-item *ngFor="let item of friendsPostsList" class="list-item-post"> 
                 <div>
@@ -33,6 +33,11 @@
                 </div>
             </mat-list-item>
         </mat-list>
+    </div>
+    <div class="alert alert-danger" *ngIf="!friendsPostsList.length">
+        <strong>
+            No Posts Yet, Add Friends And Start Posing
+        </strong>
     </div>    
     <button mat-raised-button (click)="writePost()">
         <mat-icon>post_add</mat-icon>

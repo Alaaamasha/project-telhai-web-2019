@@ -18,7 +18,8 @@
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-            <input type="email" name="email" email required matInput placeholder="Email" ngModel required>
+            <input type="email" name="email" required matInput
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"  placeholder="Email" ngModel required>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
