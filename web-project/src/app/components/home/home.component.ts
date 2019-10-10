@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
       this._userId = await this._authSvc.getCurrentUserId();
       await this._authSvc.initCurrUserData();
       let ref = this._db.database.ref("users");
-      await ref.once('value', (snapshot) => {
+      await ref.on('value', (snapshot) => {
         let users = snapshot.val();
         for (let key in users) {
           const value = users[key];
